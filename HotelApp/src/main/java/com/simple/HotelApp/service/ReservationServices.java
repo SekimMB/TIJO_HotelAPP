@@ -4,18 +4,21 @@ import com.simple.HotelApp.domain.DTO.NewReservationDTO;
 import com.simple.HotelApp.domain.entity.Reservation;
 import com.simple.HotelApp.domain.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.util.List;
 
 @Service
 public class ReservationServices {
     private final ReservationRepository reservations;
 
     @Autowired
-    public ReservationServices(ReservationRepository reservations) {this.reservations = reservations;}
+    public ReservationServices(@Qualifier("reservationRepository") ReservationRepository reservations) {this.reservations = reservations;}
 
     public void addReservation(NewReservationDTO res1){
         Reservation newres = new Reservation();
@@ -31,6 +34,12 @@ public class ReservationServices {
     }
 
     public void removeReservation(Integer id){
-        reservations.deleteById(id);
+        if(id!=null){
+        reservations.deleteById(id);}
+    }
+
+    public List<Reservation> findAll()
+    {
+        return reservations.findAll();
     }
 }

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39998348-75e6-450e-a2d4-99f21dc4aa29" name="Default Changelist" comment="" />
+    <list default="true" id="39998348-75e6-450e-a2d4-99f21dc4aa29" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HotelApp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelApp/src/main/java/com/simple/HotelApp/domain/DTO/NewReservationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelApp/src/main/java/com/simple/HotelApp/domain/DTO/NewReservationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelApp/src/main/java/com/simple/HotelApp/service/ReservationServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelApp/src/main/java/com/simple/HotelApp/service/ReservationServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelApp/src/test/java/com/simple/HotelApp/HotelAppApplicationTests.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1n7PQiAQnOh0rroTAz3IXQXpqcW" />
   <component name="ProjectViewState">
@@ -17,6 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -29,10 +39,18 @@
       <option name="presentableId" value="Default" />
       <updated>1610738141496</updated>
       <workItem from="1610738142888" duration="39000" />
+      <workItem from="1610738430122" duration="20000" />
+      <workItem from="1610746549576" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1610738448462">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610738448462" />
   </component>
 </project>

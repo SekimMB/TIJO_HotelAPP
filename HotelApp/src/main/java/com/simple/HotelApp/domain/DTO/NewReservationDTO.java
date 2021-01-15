@@ -10,6 +10,12 @@ public class NewReservationDTO {
     String start_date;
     String end_date;
 
+    public NewReservationDTO(Integer id_client, Integer id_room, String start_date, String end_date) {
+        this.id_client = id_client;
+        this.id_room = id_room;
+        this.start_date = start_date;
+        this.end_date = end_date;
+    }
 
     public Integer getId_client() {
         return id_client;
