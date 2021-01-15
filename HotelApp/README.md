@@ -7,7 +7,8 @@ Uruchamianie
 
 Projekt został stworzony w wersji Java JDK 1.8
 
-Należy sklonować repozytorium za pomocą git clone :
+Należy sklonować repozytorium za pomocą:
+git clone https://github.com/SekimMB/TIJO_HotelAPP.git
 
 Należy zainstalować zależności za pomocą:
 mvnw install
