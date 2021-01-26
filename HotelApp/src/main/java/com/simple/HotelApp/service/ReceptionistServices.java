@@ -39,7 +39,7 @@ public class ReceptionistServices {
     public void checkOut(Integer clientId,Integer roomId){
         Room roomToUpdate = rooms.getOne(roomId);
         roomToUpdate.setOccupant(null);
-        roomToUpdate.setState("Free");
+        roomToUpdate.setState("free");
         rooms.save(roomToUpdate);
     }
 

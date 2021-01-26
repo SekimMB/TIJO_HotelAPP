@@ -15,6 +15,7 @@ import com.simple.HotelApp.domain.repository.LoggedClientRepository;
 import com.simple.HotelApp.domain.repository.ReservationRepository;
 import com.simple.HotelApp.domain.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class ClientServices {
     private final LoggedClientRepository logged_client;
 
     @Autowired
-    public ClientServices(ClientRepository temp_client, RoomRepository rooms, ReservationRepository reservations,
+    public ClientServices(ClientRepository temp_client, RoomRepository rooms, @Qualifier("reservationRepository") ReservationRepository reservations,
                           LoggedClientRepository logged_client) {
         this.temp_client = temp_client;
         this.rooms = rooms;
@@ -50,7 +51,6 @@ public class ClientServices {
     }
 
     public void removeClientById(Integer id){
-        //check if exists
         temp_client.deleteById(id);
     }
 
@@ -60,6 +60,10 @@ public class ClientServices {
 
     public Optional<Client> getById(Integer id){
         return temp_client.findById(id);
+    }
+
+    public Optional<LoggedClient> getLoggedById(Integer id){
+        return logged_client.findById(id);
     }
 
     public void editClient(ClientEditDTO eclient){
@@ -76,7 +80,7 @@ public class ClientServices {
         List<ShowRoomDTO> showAvailableRooms;
         List<Room> availablerooms = rooms.findAll();
         availablerooms = availablerooms.stream()
-                .filter(e-> e.getState().equals("Free")).collect(Collectors.toList());
+                .filter(e-> e.getState().equals("free")).collect(Collectors.toList());
         showAvailableRooms = availablerooms.stream()
                 .map(newroom->{
                     ShowRoomDTO showroom = new ShowRoomDTO();
@@ -183,10 +187,7 @@ public class ClientServices {
     }
 
 
-    public int logIn(String login,String password){
-        // see jwc security token for implementation
-        // without security just download all of data of client with id
-        // TODO implement it in controller somehow
+    public int login(String login,String password){
       return logged_client.findAll().stream()
               .filter(e-> e.getPassword().equals(password) && e.getLogin().equals(login))
               .findFirst().map(user->user.getId())
@@ -248,14 +249,9 @@ public class ClientServices {
         logged_client.save(newclient);
         }
 
-        public boolean updateLoggedClient(LoggedClientDTO updatedclient) {
+        public boolean updateLoggedClient(int ID,LoggedClientDTO updatedclient) {
 
-            int id = logged_client.findAll().stream()
-                    .filter(e -> e.getLogin().equals(updatedclient.getLogin()))
-                    .findFirst().map(user -> user.getId())
-                    .orElseThrow(NoUserFoundException::new);
-
-            LoggedClient client = logged_client.getOne(id);
+            LoggedClient client = logged_client.getOne(ID);
             client.setLogin(updatedclient.getLogin());
             client.setPassword(updatedclient.getPassword());
             client.setName(updatedclient.getName());
@@ -265,16 +261,12 @@ public class ClientServices {
             client.setPhone(updatedclient.getPhone());
             logged_client.save(client);
             return true;
-            //chyba lepiej żeby cos działało najpierw
+
         }
 
 
-        public boolean deleteLoggedClient(LoggedClientDTO deledclient){
-            int id = logged_client.findAll().stream()
-                    .filter(e -> e.getLogin().equals(deledclient.getLogin()))
-                    .findFirst().map(user -> user.getId())
-                    .orElseThrow(NoUserFoundException::new);
-            logged_client.deleteById(id);
-            return false;
+        public boolean deleteLoggedClient(int client_id){
+            logged_client.deleteById(client_id);
+            return true;
         }
 }

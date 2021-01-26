@@ -5,6 +5,7 @@ import com.simple.HotelApp.service.ReservationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value="/api")
 public class ReservationController {

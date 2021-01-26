@@ -20,7 +20,7 @@ public class ReservationServices {
     @Autowired
     public ReservationServices(@Qualifier("reservationRepository") ReservationRepository reservations) {this.reservations = reservations;}
 
-    public void addReservation(NewReservationDTO res1){
+    public String addReservation(NewReservationDTO res1){
         Reservation newres = new Reservation();
         newres.setId_client(res1.getId_client());
         newres.setId_room(res1.getId_room());
@@ -31,7 +31,7 @@ public class ReservationServices {
 
         }
         reservations.save(newres);
-    }
+    return "added reservation";}
 
     public void removeReservation(Integer id){
         if(id!=null){

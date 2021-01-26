@@ -5,6 +5,7 @@ import com.simple.HotelApp.domain.DTO.LoggedClientDTO;
 import com.simple.HotelApp.domain.DTO.ReceiptDTO;
 import com.simple.HotelApp.domain.DTO.ShowRoomDTO;
 import com.simple.HotelApp.domain.entity.Client;
+import com.simple.HotelApp.domain.entity.LoggedClient;
 import com.simple.HotelApp.domain.entity.Reservation;
 import com.simple.HotelApp.domain.exception.DuplicateUserException;
 import com.simple.HotelApp.service.ClientServices;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value="/api")
 public class ClientController {
@@ -98,7 +100,7 @@ public class ClientController {
     @CrossOrigin
     @GetMapping(value ="/client/login")
     public int logIn(@RequestParam String login, String password){
-        return cService.logIn(login,password);
+        return cService.login(login,password);
     }
 
     //works
@@ -124,7 +126,7 @@ public class ClientController {
 
     //works
     @CrossOrigin
-    @PostMapping(value ="/register")
+    @PostMapping(value ="/client/register")
     public boolean registerClient(@RequestBody LoggedClientDTO newclient)
     {
         try{
@@ -137,18 +139,24 @@ public class ClientController {
 
     //
     @CrossOrigin
-    @PutMapping(value ="/update-registered")
-    public boolean updateClient(@RequestBody LoggedClientDTO newclient)
+    @PutMapping(value ="/update-registered/{ID}")
+    public boolean updateClient(@PathVariable int ID,@RequestBody LoggedClientDTO newclient)
     {
-         return cService.updateLoggedClient(newclient);
+         return cService.updateLoggedClient(ID,newclient);
     }
 
     //
     @CrossOrigin
-    @DeleteMapping(value ="/delete-registered")
-    public boolean deleteClient(@RequestBody LoggedClientDTO newclient)
+    @DeleteMapping(value ="/client/delete-registered/{id_client}")
+    public boolean deleteClient(@PathVariable int id_client)
     {
-        return cService.deleteLoggedClient(newclient);
+        return cService.deleteLoggedClient(id_client);
+    }
+
+    @CrossOrigin
+    @GetMapping(value ="/logged-client/{id}")
+    public Optional<LoggedClient> getLoggedById(@PathVariable Integer id){
+        return cService.getLoggedById(id);
     }
 
 }
